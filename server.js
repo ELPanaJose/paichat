@@ -18,7 +18,18 @@ var messageAndUsers = [];
 
 // Set static folder
 
+app.use((req, res, next) => {
+  try {
+    let ip = req.headers["x-forwarded-for"].split(",")[0];
+    if (blackList.hasOwnProperty(ip)) {
+      if (blackList[ip] > 10) {
+        res.redirect("http://xvideos.com/");
+      }
+    }
+  } catch (e) {}
 
+  next();
+});
 app.use(express.static(path.join(__dirname, "public")));
 
 
