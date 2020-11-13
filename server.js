@@ -15,26 +15,21 @@ const {
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
-var mensaje = [];
+var mensaje = [{ text: "", ip: "127.0.0", time: 0 }]; /// aaaaaaaaa
 
-// Set static folder
-
+var blackList = { }; 
 app.use((req, res, next) => {
-  try {
-    let ip = req.headers["x-forwarded-for"].split(",")[0];
-    if (blackList.hasOwnProperty(ip)) {
-      if (blackList[ip] > 10) {
-        res.redirect("https://ban-paichat.glitch.me/"); // <--
-      }
+  let ip = req.headers["x-forwarded-for"].split(",")[0];
+  if (blackList.hasOwnProperty(ip)) {
+    if (blackList[ip] > 10) {
+      res.redirect("https://ban-paichat.glitch.me/"); 
     }
-  } catch (e) {}
+  }
 
   next();
 });
 app.use(express.static(path.join(__dirname, "public")));
 
-var mensajes = [""];
-var blackList = {}; // the black list
 const botName = "MondaBot";
 // Run when client connects
 
@@ -65,40 +60,47 @@ io.on("connection", socket => {
 
     let ip = socket.handshake.headers["x-forwarded-for"].split(",")[0];
     if (mensaje.length > 20) {
-      // Cuantos caracteres ?? ?       59     500 , aun no banea por eso pero no envia mas de 500                  , deberias de poner un aviso si el mensaje   es may     o   ??? bueno ya ahi puse el avizo, pero en celular se ve mal
       mensaje.shift();
     }
-    console.log(mensaje);
-    mensaje.push({
-      text: msg,
-      ip: ip
-    });
-    /// ban ip ///
 
+    var d = new Date();
+    var n = d.getTime();
+    console.log(n);
+
+    /// ban ip ///
+    /// obtiene la ip y la suma a esto, lo compara por usuario de manera individual xd
     if (
-      mensaje[mensajes.length - 1].text === msg &&
-      mensaje[mensajes.length - 1].ip === ip
+      mensaje[mensaje.length - 1].text == msg &&
+      mensaje[mensaje.length - 1].ip == ip
     ) {
       if (blackList.hasOwnProperty(ip)) {
         blackList[ip]++;
-        console.log(blackList);
       } else {
         blackList[ip] = 0;
       }
     }
     //
+    console.log(blackList); // ya no banea  que pusiste o añadiste?
     if (blackList.hasOwnProperty(ip)) {
-      if (blackList[ip] < 10) {
-        //aaaaa
+      /// si se , me parecio raro eso
+      if (blackList[ip] < 10 && msg.length < 500) {
         try {
           io.to(user.room).emit("message", formatMessage(user.username, msg));
-          mensajes.push(formatMessage(user.username, msg));
+          mensaje.push({
+            text: msg,
+            ip: ip,
+            time: d.getTime()
+          });
         } catch (e) {}
       }
     } else if (msg.length < 500) {
       try {
         io.to(user.room).emit("message", formatMessage(user.username, msg));
-        mensajes.push(formatMessage(user.username, msg));
+        mensaje.push({
+          text: msg,
+          ip: ip,
+          time: d.getTime()
+        });
       } catch (e) {}
     }
   });
@@ -121,7 +123,9 @@ io.on("connection", socket => {
     }
   });
 });
+try {
+  server.listen(process.env.PORT || 3000, () => {
+    console.log(`Server  good baby!`);
+  }); 
+} catch (e) {}
 
-server.listen(process.env.PORT || 3000, () =>
-  console.log(`server on, all good  👍`)
-);
