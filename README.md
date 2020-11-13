@@ -14,7 +14,7 @@ and nodemon
 npm install -D nodemon
 ```
 
-https://chatcord.elpanajose.repl.co/
+
 
 https://paichat.glitch.me/
 
