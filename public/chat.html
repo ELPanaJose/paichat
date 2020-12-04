@@ -10,18 +10,27 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="css/style.css" />
-    <link rel="shortcut icon" href="https://www.dictionary.com/e/wp-content/uploads/2018/09/money-mouth-emoji-300x300.png" type="image/x-icon">
-    <title>ChatPai</title>
+    <link
+      rel="shortcut icon"
+      href="https://www.dictionary.com/e/wp-content/uploads/2018/09/money-mouth-emoji-300x300.png"
+      type="image/x-icon"
+    />
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.js"></script>
+    <title>PaiChat</title>
   </head>
   <body>
     <div class="chat-container">
       <header class="chat-header">
-        <h1><i class="fas fa-smile"></i> ChatPai</h1>
+        <h1>paiChatBeta</h1> <!-- debemos poner un logo aqui  tambien  -->
+        <h8>
+          important: if you send the same message 11 times, you will be banned     <!-- aqui esta el problema jediondo  -->
+        </h8>
         <a href="index.html" class="btn">Leave Room</a>
       </header>
       <main class="chat-main">
         <div class="chat-sidebar">
           <h3><i class="fas fa-comments"></i> Room Name:</h3>
+          
           <h2 id="room-name"></h2>
           <h3><i class="fas fa-users"></i> Users</h3>
           <ul id="users"></ul>
@@ -38,7 +47,8 @@
             autocomplete="off"
           />
           <button class="btn"><i class="fas fa-paper-plane"></i> Send</button>
-        </form>
+          <!--input type="file"--> 
+        </form>    <!-- que piensas hacer? -->
       </div>
     </div>
 
@@ -47,7 +57,7 @@
       integrity="sha256-TDxXjkAUay70ae/QJBEpGKkpVslXaHHayklIVglFRT4="
       crossorigin="anonymous"
     ></script>
-    
+
     <script src="/socket.io/socket.io.js"></script>
     <script src="js/main.js"></script>
   </body>
