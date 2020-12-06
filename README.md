@@ -18,3 +18,6 @@ npm install -D nodemon
 
 https://paichat.glitch.me/
 
+https://chat-pai.herokuapp.com/
+(this is new, in heroku im going to put the db)
+
