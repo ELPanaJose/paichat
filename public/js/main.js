@@ -62,8 +62,6 @@ function outputMessage(message) {
   div.appendChild(para);
   document.querySelector(".chat-messages").appendChild(div);
   //---------> esto es la parte de advertencia
-  console.log("bloqueamos por ip , y pronto bloquearemos el DOM");
-  console.log("chat pai 🤣😢😭🤢🥳💭👻👻😂🙏😂🤫");
 }
 
 // Add room name to DOM
