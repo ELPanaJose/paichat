@@ -5,7 +5,6 @@ USE paichat_db;
 CREATE TABLE users(
     id INT(11) NOT NULL,
     username VARCHAR(16) NOT NULL,
-    password VARCHAR(60) NOT NULL,
     ip VARCHAR(9) NOT NULL
 );
 
