@@ -64,7 +64,7 @@ io.on("connection", socket => {
         {
           text: undefined,
           ip: undefined,
-          time: 1, // ?????
+          time: 1, 
           diference: undefined
         }
       ];
@@ -92,10 +92,10 @@ io.on("connection", socket => {
     } catch (e) {}
 
     //
-    console.log(blackList); // ya no banea  que pusiste o añadiste?
+    console.log(blackList); 
     if (blackList.hasOwnProperty(ip) && blackList[ip] > 10) {
       console.log(ip);
-      /// si se , me parecio raro eso
+
     } else if (msg.length < 500) {
       try {
         io.to(user.room).emit("message", formatMessage(user.username, msg));
