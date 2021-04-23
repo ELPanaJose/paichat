@@ -17,8 +17,8 @@
 body {
   font-family: "Roboto", sans-serif;
   font-size: 16px;
-  background-color:black;
-  background: black;
+  background-color: #2c2f33;
+  background: #2c2f33;
   margin: 20px;
 }
 
@@ -109,8 +109,7 @@ a {
   font-weight: bold;
   color: white;
   opacity: 0.25;
-  margin-bottom: 7px;
-  color: 
+  margin-bottom: 7px; 
 }
 
 .chat-messages .message .meta span {
