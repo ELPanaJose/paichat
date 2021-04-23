@@ -1,4 +1,4 @@
-# chatpai
+# paichat
 a simple chat with socket.io , thanks!  Traversy Media
 
 
