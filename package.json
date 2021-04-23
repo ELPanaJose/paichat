@@ -4,8 +4,8 @@
   "description": "Real time chat app with rooms :D",
   "main": "server.js",
   "scripts": {
-    "start":"node server.js",
-    "dev": "nodemon server"
+    "start": "node src/utils/server.js",
+    "dev": "nodemon src/utils/server.js"
   },
   "author": "Pai",
   "license": "MIT",
